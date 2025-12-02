@@ -1,0 +1,89 @@
+/* assets/css/style.css */
+
+/* basic reset */
+* {
+    box-sizing: border-box;
+}
+
+/* overlay & sidebar */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: none;
+    z-index: 9998;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    transform: translateX(-100%);
+    transition: transform .28s ease;
+    z-index: 9999;
+}
+
+#sidebar.show {
+    transform: translateX(0);
+}
+
+#overlay.show {
+    display: block;
+}
+
+/* sidebar internals */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.close-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    margin-bottom: 10px;
+}
+
+.menu-list li a {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #111;
+}
+
+.menu-list li.active a {
+    background: #3A82F7;
+    color: #fff;
+}
+
+/* modal helpers */
+.hidden {
+    display: none !important;
+}
+
+.flex {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* maintain existing look from tailwind; leave most styling to tailwind */
