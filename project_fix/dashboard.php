@@ -9,6 +9,7 @@ $user = $_SESSION['user'];
 $user_id = (int)$user['id'];
 $active = 'dashboard';
 
+
 // stats
 $stmt = $conn->prepare("SELECT COUNT(*) as total,
     SUM(CASE WHEN status='sedang' THEN 1 ELSE 0 END) as aktif,
@@ -63,7 +64,7 @@ $deadlines = $stmt->get_result()->fetch_all(MYSQLI_ASSOC); $stmt->close();
     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
       <button id="openAddModal" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">Tambah Deadline Baru</button>
       <button id="testNotif" class="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold">Tes Notifikasi</button>
-      <button id="exportBtn" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold">Export Data</button>
+      <a href="export_csv.php" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-gray-600">Export Data</a>
 
       <form method="GET" action="" class="flex flex-col sm:flex-row gap-3 w-full sm:ml-auto">
         <input type="text" name="q" placeholder="Cari deadline..." class="border rounded-lg px-4 py-3 w-full sm:w-60" value="<?= isset($_GET['q'])?htmlspecialchars($_GET['q']):'' ?>">
