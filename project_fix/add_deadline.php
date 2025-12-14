@@ -2,7 +2,6 @@
 session_start();
 require "database.php";
 
-// Pastikan user login
 if (!isset($_SESSION["user"])) {
     header("Location: login.php");
     exit();
@@ -26,29 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute();
     $stmt->close();
 
-    // Jika terhubung dengan Google Calendar, tambahkan event
-    if (isset($_SESSION['google_token'])) {
-        require 'vendor/autoload.php';
-
-        $client = new Google\Client();
-        $client->setAuthConfig('google/credentials.json');
-        $client->setAccessToken($_SESSION['google_token']);
-
-        $service = new Google\Service\Calendar($client);
-
-        $event = new Google\Service\Calendar\Event([
-            'summary'     => $title,
-            'description' => $desc,
-            'start'       => ['date' => $due_date],
-            'end'         => ['date' => $due_date]
-        ]);
-
-        try {
-            $service->events->insert('primary', $event);
-        } catch (Exception $e) {
-            error_log("Google Calendar Error: " . $e->getMessage());
-        }
-    }
+    // Set session notifikasi
+    $_SESSION["success"] = "Deadline berhasil ditambahkan!";
 
     header("Location: dashboard.php");
     exit();

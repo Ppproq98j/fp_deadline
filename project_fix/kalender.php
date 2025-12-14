@@ -87,28 +87,11 @@ $selectedList = ($selectedDay && isset($deadlineHari[$selectedDay])) ? $deadline
       <a href="?month=<?= $nextMonth ?>&year=<?= $nextYear ?>" 
          class="px-4 py-2 bg-gray-600 text-white rounded-lg">Bulan Depan →</a>
   </div>
-
-  <!-- STATUS GOOGLE CONNECT -->
-  <div class="flex justify-end mb-6">
-
-      <?php if (isset($_SESSION['google_token'])): ?>
-    <div class="flex gap-3">
-        <span class="bg-green-100 text-green-700 px-4 py-2 rounded-lg">
-            ✓ Terhubung ke Google Calendar
-        </span>
-
-        <a href="google_disconnect.php"
-           class="bg-red-500 text-white px-4 py-2 rounded-lg">
-           ✕ Putuskan
-        </a>
-    </div>
-<?php else: ?>
-    <a href="google_connect.php"
-       class="bg-blue-600 text-white px-4 py-2 rounded-lg">
-       🔗 Hubungkan Google Calendar
+  <div class="mb-4 flex justify-end">
+    <a href="https://calendar.google.com/calendar/u/0/r" target="_blank"
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+        🔗 Buka Google Calendar
     </a>
-<?php endif; ?>
-
   </div>
 
   <!-- KALENDER GRID -->
